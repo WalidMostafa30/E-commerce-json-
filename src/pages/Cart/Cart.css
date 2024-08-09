@@ -1,0 +1,30 @@
+.Cart {
+  .Cart__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .Cart__details {
+    width: 40%;
+    border: 3px solid var(--main-color);
+    position: sticky;
+    top: 70px;
+    
+    @media (max-width: 991px) {
+      width: 100%;
+      position: static;
+      margin-bottom: 20px;
+    }
+  }
+
+  .Cart__products {
+    width: 58%;
+    border: 3px solid var(--main-color);
+
+    @media (max-width: 991px) {
+      width: 100%;
+    }
+  }
+}

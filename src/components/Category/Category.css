@@ -1,0 +1,25 @@
+.Category {
+  .Category__img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+  }
+
+  .Category__title {
+    text-align: center;
+    margin-top: 20px !important;
+    color: var(--main-text-color);
+  }
+}

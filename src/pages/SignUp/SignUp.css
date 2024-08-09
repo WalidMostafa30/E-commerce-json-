@@ -1,0 +1,26 @@
+.SignUp {
+  .SignUp__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .SignUp__input {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        input {
+          border: 2px solid var(--main-color);
+          outline: none;
+          font-size: 20px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

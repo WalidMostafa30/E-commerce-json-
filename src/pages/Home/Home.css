@@ -1,0 +1,14 @@
+.Home {
+  padding: 0;
+
+  .WeatherCard__msg-error {
+    background: rgba(225, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    border-radius: 50px;
+    box-shadow: var(--main-shadow);
+    width: var(--main-width);
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+  }
+}

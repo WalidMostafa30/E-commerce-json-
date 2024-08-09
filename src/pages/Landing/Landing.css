@@ -1,0 +1,50 @@
+.Landing {
+  background-color: var(--main-color2);
+
+  .Landing__container {
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 991px) {
+      flex-direction: column-reverse;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+
+  .Landing__group {
+    text-align: center;
+  }
+
+  .Landing__welcome {
+    font-size: 30px;
+  }
+
+  .Landing__title {
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 30px !important;
+
+    span {
+      color: var(--main-color);
+    }
+
+    @media (max-width: 991px) {
+      font-size: 70px;
+    }
+  }
+
+  .Landing__img {
+    width: 500px;
+
+    @media (max-width: 1200px) {
+      width: 400px;
+    }
+
+    @media (max-width: 991px) {
+      width: 60%;
+    }
+  }
+}

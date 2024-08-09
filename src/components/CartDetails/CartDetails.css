@@ -1,0 +1,10 @@
+.CartDetails{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+  table{
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,23 @@
+.GlobalTitle {
+  font-size: 50px;
+  color: var(--main-text-color);
+  position: relative;
+  width: fit-content;
+  margin: 40px auto 70px !important;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+    margin: 20px auto 40px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: var(--main-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 5px;
+  }
+}
