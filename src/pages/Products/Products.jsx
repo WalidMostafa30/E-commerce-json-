@@ -4,9 +4,9 @@ import { Container } from "react-bootstrap";
 import GlobalTitle from "../../components/GlobalTitle/GlobalTitle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Product from "../../components/product/Product";
 import { cleanProducts, getProducts } from "../../store/productsSlice";
 import Loading from "../../components/Loading/Loading";
+import ProductsItms from "../../components/ProductsItms/ProductsItms";
 
 const Products = () => {
   const { prefix } = useParams();
@@ -25,13 +25,7 @@ const Products = () => {
 
       <Loading isLoading={isLoading} error={error}>
         <Container className="Products__container">
-          {products.map((pro) => {
-            return (
-              <div className="Products__product" key={pro.id}>
-                <Product pro={pro} />
-              </div>
-            );
-          })}
+          <ProductsItms products={products} />
         </Container>
       </Loading>
     </section>

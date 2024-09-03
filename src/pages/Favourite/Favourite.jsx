@@ -2,7 +2,6 @@ import "./Favourite.css";
 import { Container } from "react-bootstrap";
 import GlobalTitle from "../../components/GlobalTitle/GlobalTitle";
 import { useDispatch, useSelector } from "react-redux";
-import Product from "../../components/product/Product";
 import Message from "../../components/Message/Message";
 import imgFav from "../../assets/images/Favourite.webp";
 import {
@@ -11,6 +10,7 @@ import {
 } from "../../store/favouriteSlice";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import ProductsItms from "../../components/ProductsItms/ProductsItms";
 
 const Favourite = () => {
   const { productsFullInfo } = useSelector((state) => state.favourite);
@@ -34,15 +34,16 @@ const Favourite = () => {
 
       {productsFullInfo.length !== 0 ? (
         <Container className="Favourite__container">
-          <div className="Favourite__products">
-            {productsFullInfo.map((pro) => {
-              return (
-                <div className="Favourite__product" key={pro.id}>
-                  <Product pro={pro} />
-                </div>
-              );
-            })}
+          <div className="col-12 text-center mb-3">
+            <button
+              className="main-btn py-1 px-3 fs-4"
+              // onClick={() => dispatch(clearFav())}
+            >
+              Clear All Favourite
+            </button>
           </div>
+
+          <ProductsItms products={productsFullInfo} />
         </Container>
       ) : (
         <Message msg={"No Favourites Yet... Add Some"} msgImg={imgFav} />

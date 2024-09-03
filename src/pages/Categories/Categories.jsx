@@ -21,9 +21,9 @@ const Categories = () => {
   return (
     <section className="Categories">
       <GlobalTitle title={"Categories"} />
-      
+
       <Loading isLoading={isLoading} error={error}>
-        <Container className="Categories__container">
+        <Container className="Categories__container row m-auto w-100 align-items-center justify-content-center gap-5">
           {categories.map((cat) => {
             return <Category key={cat.id} cat={cat} />;
           })}

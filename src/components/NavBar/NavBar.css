@@ -1,37 +1,20 @@
 .NavBar {
-  background-color: var(--main-bg-color);
-  position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-
-  .NavBar__title {
-    font-weight: bold;
-
-    span {
-      color: var(--main-color);
-    }
-  }
-
-  .NavBar__container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
 
   .NavBar__links {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
+    gap: 40px;
 
-    @media (max-width: 992px) {
+    @media (max-width: 767px) {
       background-color: var(--main-bg-color);
-      position: absolute;
-      top: 70px;
+      position: fixed;
+      top: calc(var(--nav-height) * 2);
       left: 0;
       width: 100%;
       height: fit-content;
@@ -50,10 +33,11 @@
   }
 
   .NavBar__link {
-    color: var(--main-p-color);
-    padding: 15px 20px;
+    color: var(--main-text-color);
+    padding-block: 15px;
     font-size: 18px;
     position: relative;
+    transition: 0.3s;
 
     &.active,
     &:hover {
@@ -68,7 +52,7 @@
     justify-content: space-between;
     gap: 15px;
 
-    @media (max-width: 992px) {
+    @media (max-width: 767px) {
       margin-left: auto;
     }
   }
@@ -78,7 +62,7 @@
     font-size: 26px;
     position: relative;
 
-    @media (max-width: 992px) {
+    @media (max-width: 767px) {
       font-size: 22px;
     }
 
@@ -90,74 +74,17 @@
       color: white;
       font-size: 15px;
       font-weight: 600;
+      padding: 0px 7px;
       border-radius: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 25px;
-      height: 25px;
-    }
-  }
-
-  .signUpDiv {
-    border: 2px solid var(--main-color);
-    display: flex;
-    align-items: center;
-
-    a {
-      padding: 5px 10px;
-      color: var(--main-color);
-      font-weight: bold;
-
-      &:hover {
-        background-color: var(--main-color);
-        color: white;
-      }
     }
 
-    span {
-      background-color: var(--main-color);
-      width: 2px;
-      height: 30px;
+    path {
+      transition: 0.3s;
     }
-  }
-
-  .userLogIn {
-    border: 2px solid transparent;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    position: relative;
 
     &:hover {
-      span {
-        display: block;
-      }
-    }
-
-    h4,
-    path {
-      color: var(--main-color);
-      text-transform: capitalize;
-    }
-
-    span {
-      display: none;
-      position: absolute;
-      bottom: -34px;
-      left: 0;
-      text-align: center;
-      width: 100%;
-      border: 2px solid var(--main-color);
-      color: var(--main-color);
-      background-color: var(--main-bg-color);
-      font-size: 20px;
-
-      &:hover {
-        background-color: var(--main-color);
-        color: white;
+      path {
+        color: var(--main-color);
       }
     }
   }

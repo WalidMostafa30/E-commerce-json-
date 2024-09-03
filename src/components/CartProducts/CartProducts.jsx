@@ -39,7 +39,7 @@ const CartProducts = ({ products }) => {
 
                 <button
                   onClick={() => dispatch(removeFromCart(pro.id))}
-                  className="CartProduct-remove main-btn main-btn--danger"
+                  className="CartProduct-remove main-btn main-btn--danger py-1 px-2"
                 >
                   Remove
                 </button>

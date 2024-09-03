@@ -4,7 +4,6 @@
   box-sizing: border-box;
   color: var(--main-text-color);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  transition: 0.3s;
 }
 
 :root {
@@ -14,12 +13,18 @@
   --main-text-color: black;
   --main-p-color: #757575;
   --main-red-color: #be1111;
-  --main-card-color: white;
+  --nav-height: 60px;
+}
+
+.dark {
+  --main-color2: #192023;
+  --main-bg-color: black;
+  --main-text-color: white;
 }
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: var(--main-bg-color) !important;
+  background-color: var(--main-bg-color);
 }
 
 html {
@@ -37,21 +42,22 @@ ul,
 li,
 a,
 i {
-  margin: 0 !important;
-  list-style: none !important;
-  text-decoration: none !important;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
 .main-btn {
   background-color: var(--main-color);
   border: 2px solid var(--main-color);
   color: white;
-  padding: 10px 20px;
-  font-size: 26px;
   cursor: pointer;
-  width: fit-content;
-
+  border-radius: 5px;
+  transition: 0.3s;
+  
   path {
+    transition: 0.3s;
     color: white;
   }
 
@@ -64,18 +70,21 @@ i {
     }
   }
 
-  @media (max-width: 768px) {
-    padding: 7px 15px;
-    font-size: 20px;
-  }
-
   &.main-btn--light {
     background-color: var(--main-bg-color);
     color: var(--main-color);
 
+    path {
+      color: var(--main-color);
+    }
+
     &:hover {
       background-color: var(--main-color);
       color: white;
+
+      path {
+        color: white;
+      }
     }
   }
 
@@ -83,13 +92,21 @@ i {
     background-color: var(--main-red-color);
     border: 2px solid var(--main-red-color);
 
+    path {
+      color: var(--main-color);
+    }
+
     &:hover {
       background-color: var(--main-bg-color);
       color: var(--main-red-color);
+
+      path {
+        color: white;
+      }
     }
   }
 }
 
 section {
-  padding: 80px 0;
+  padding-bottom: 40px;
 }

@@ -2,14 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { authLogout } from "./authSlice";
 
-// const itemIdLS = localStorage.getItem("EcomFav")
-//   ? JSON.parse(localStorage.getItem("EcomFav"))
-//   : [];
-
-// const favInLocalStorage = (data) => {
-//   localStorage.setItem("EcomFav", JSON.stringify(data));
-// };
-
 const initialState = {
   itemsId: [],
   productsFullInfo: [],
@@ -100,10 +92,8 @@ export const favouritesSlice = createSlice({
     builder.addCase(actLikeToggle.fulfilled, (state, action) => {
       if (action.payload.type === "add") {
         state.itemsId.push(action.payload.id);
-        // favInLocalStorage(state.itemsId);
       } else {
         state.itemsId = state.itemsId.filter((el) => el !== action.payload.id);
-        // favInLocalStorage(state.itemsId);
         state.productsFullInfo = state.productsFullInfo.filter(
           (el) => el.id !== action.payload.id
         );

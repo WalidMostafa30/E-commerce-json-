@@ -12,13 +12,13 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="Footer">
-      <Container className="Footer__container">
+      <Container className="Footer__container w-100 d-flex flex-column align-items-center justify-content-evenly py-5 flex-xl-row gap-4">
         <div className="Footer__title-follow">
           <h1 className="Footer__Title">
             Mini<span>Store</span>
           </h1>
 
-          <div className="Footer__follow">
+          <div className="Footer__follow d-flex align-items-center justify-content-between mt-2">
             <a
               target="_blank"
               href="https://www.facebook.com/profile.php?id=100011538554307&mibextid=ViGcVu"
@@ -44,9 +44,9 @@ export default function Footer() {
         </div>
 
         <div className="Footer__pages">
-          <h2 className="Footer__pages-title">Pages</h2>
+          <h2 className="Footer__pages-title text-center">Pages</h2>
 
-          <ul className="Footer__links">
+          <ul className="Footer__links mt-4 d-flex justify-content-center gap-4">
             <Link to={"/"} className="Footer__links-link">
               Home
             </Link>

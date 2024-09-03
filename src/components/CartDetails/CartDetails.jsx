@@ -20,7 +20,7 @@ const CartDetails = ({ products }) => {
 
   return (
     <div className="CartDetails">
-      <Table striped bordered hover variant={darkMode && "dark"}>
+      <Table striped bordered hover variant={darkMode ? "dark" : ""}>
         <tbody>
           <tr>
             <td>Total Product</td>
@@ -38,7 +38,7 @@ const CartDetails = ({ products }) => {
       </Table>
 
       <button
-        className="main-btn main-btn--danger"
+        className="main-btn main-btn--danger py-1 px-3 fs-3"
         onClick={() => dispatch(clearCart())}
       >
         Clear Cart

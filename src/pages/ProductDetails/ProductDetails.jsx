@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./ProductDetails.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,17 @@ const ProductDetails = () => {
   const [activeImg, setActiveImg] = useState(0);
   const imgNum = (index) => setActiveImg(index);
 
+  const { accessToken } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  const handleAddToCart = (pro) => {
+    if (accessToken) {
+      dispatch(addToCart(pro.id));
+    } else {
+      navigate("/login");
+    }
+  };
+
   useEffect(() => {
     dispatch(getProductDetails(id));
 
@@ -27,7 +38,7 @@ const ProductDetails = () => {
   }, [dispatch, id]);
 
   return (
-    <section className="ProductDetails">
+    <section className="ProductDetails pt-3">
       <Loading isLoading={isLoading} error={error}>
         <Container className="ProductDetails__container">
           <div className="ProductDetails__imgs">
@@ -71,8 +82,8 @@ const ProductDetails = () => {
             </p>
 
             <button
-              className="ProductDetails__info-btn main-btn"
-              onClick={() => dispatch(addToCart(productDetails.id))}
+              className="ProductDetails__info-btn main-btn p-2 fs-3"
+              onClick={handleAddToCart}
             >
               Add To Cart <FontAwesomeIcon icon={faCartShopping} />
             </button>
