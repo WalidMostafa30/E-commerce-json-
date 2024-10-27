@@ -11,35 +11,62 @@ const CartProducts = ({ products }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="CartProducts">
+    <div
+      className="rounded-3"
+      style={{ border: "3px solid var(--main-color)" }}
+    >
       {products.map((pro) => {
         return (
-          <div key={pro.id} className="CartProduct">
-            <div className="CartProduct__head">
-              <h4 className="CartProduct-title">{pro.title}</h4>
+          <div key={pro.id} className="CartProduct p-3">
+            <div className="d-flex align-items-center justify-content-between mb-2">
+              <h4 className="CartProduct__title fs-4 fw-semibold">
+                {pro.title}
+              </h4>
 
-              <h3 className="CartProduct-price">{pro.price} $</h3>
+              <h3 className="textMC fw-semibold">{pro.price} $</h3>
             </div>
 
-            <div className="CartProduct__body">
-              <img className="CartProduct-img" src={pro.images[0]} alt="img" />
+            <div className="d-flex">
+              <div
+                className="rounded-2 overflow-hidden"
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  filter: "drop-shadow(-2px 4px 3px #00000040)",
+                }}
+              >
+                <img
+                  className="h-100 w-100 object-fit-cover"
+                  src={pro.images[0]}
+                  alt={pro.title}
+                  loading="lazy"
+                />
+              </div>
 
-              <div className="CartProduct__actions">
-                <h3 className="">{pro.price * pro.quantity} $</h3>
+              <div className="d-flex flex-column align-items-center justify-content-center gap-2 flex-grow-1">
+                <h3>{pro.price * pro.quantity} $</h3>
 
-                <div className="CartProduct-quantity">
-                  <button onClick={() => dispatch(decressquantity(pro.id))}>
+                <div className="CartProduct__quantity d-flex align-items-center justify-content-center w-auto rounded-2">
+                  <button
+                    className="fs-4 px-3 fw-semibold border-0 text-white bgMC"
+                    onClick={() => dispatch(decressquantity(pro.id))}
+                  >
                     -
                   </button>
 
-                  <p>{pro.quantity}</p>
+                  <p className="fs-6 px-3 border-0">{pro.quantity}</p>
 
-                  <button onClick={() => dispatch(addToCart(pro.id))}>+</button>
+                  <button
+                    className="fs-4 px-3 fw-semibold border-0 text-white bgMC"
+                    onClick={() => dispatch(addToCart(pro.id))}
+                  >
+                    +
+                  </button>
                 </div>
 
                 <button
                   onClick={() => dispatch(removeFromCart(pro.id))}
-                  className="CartProduct-remove main-btn main-btn--danger py-1 px-2"
+                  className="btn btn-danger py-1 px-2"
                 >
                   Remove
                 </button>

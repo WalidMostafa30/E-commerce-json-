@@ -2,13 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProductDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { addToCart } from "../../store/cartSlice";
-import { cleanProducts } from "../../store/productsSlice";
-import { getProductDetails } from "../../store/productDetailsSlice";
+import { actLikeToggle } from "../../store/favouriteSlice.js";
+import { cleanProductDetails, getProductDetails } from "../../store/productDetailsSlice";
 import Loading from "../../components/Loading/Loading";
+import { FaShoppingCart } from "react-icons/fa";
+import { IoMdHeart } from "react-icons/io";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -18,9 +17,11 @@ const ProductDetails = () => {
   );
 
   const [activeImg, setActiveImg] = useState(0);
+  
   const imgNum = (index) => setActiveImg(index);
 
   const { accessToken } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
 
   const handleAddToCart = (pro) => {
@@ -31,64 +32,84 @@ const ProductDetails = () => {
     }
   };
 
+  const handleAddToFavourite = (pro) => {
+    if (accessToken) {
+      dispatch(actLikeToggle(pro.id));
+    } else {
+      navigate("/login");
+    }
+  };
+
   useEffect(() => {
     dispatch(getProductDetails(id));
 
-    return () => dispatch(cleanProducts());
+    return () => dispatch(cleanProductDetails());
   }, [dispatch, id]);
 
   return (
-    <section className="ProductDetails pt-3">
+    <section className="ProductDetails">
       <Loading isLoading={isLoading} error={error}>
-        <Container className="ProductDetails__container">
-          <div className="ProductDetails__imgs">
-            <img
-              className="ProductDetails__big-img"
-              src={productDetails.images && productDetails.images[activeImg]}
-              alt="img"
-            />
+        <div className="ProductDetails__container container row m-auto g-4">
+          <div className="col-12 col-xl-5 d-flex flex-column gap-2">
+            <div className="ProductDetails__bigImg">
+              <img
+                src={productDetails.images && productDetails.images[activeImg]}
+                alt={productDetails.title}
+                loading="lazy"
+              />
+            </div>
 
-            <div className="ProductDetails__small-imgs">
+            <div className="row row-cols-3 g-2">
               {productDetails.images &&
                 productDetails.images.map((img, index) => {
                   return (
-                    <img
-                      className={
-                        activeImg === index
-                          ? "ProductDetails__small-img active"
-                          : "ProductDetails__small-img"
-                      }
-                      key={index}
-                      src={img}
-                      alt="img"
-                      onClick={() => imgNum(index)}
-                    />
+                    <div key={index}>
+                      <div
+                        className={
+                          activeImg === index
+                            ? "ProductDetails__smallImg active"
+                            : "ProductDetails__smallImg"
+                        }
+                        onClick={() => imgNum(index)}
+                      >
+                        <img
+                          src={img}
+                          alt={productDetails.title}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
                   );
                 })}
             </div>
           </div>
 
-          <div className="ProductDetails__info">
-            <h1 className="ProductDetails__info-title">
-              {productDetails.title}
-            </h1>
+          <div className="col-12 col-xl-7">
+            <h1 className="fw-semibold">{productDetails.title}</h1>
 
-            <h5 className="ProductDetails__info-description">
-              {productDetails.description}
-            </h5>
+            <h5 className="my-3">{productDetails.description}</h5>
 
-            <p className="ProductDetails__info-price">
+            <p className="mb-3 fs-3 fw-semibold textMC">
               {productDetails.price} $
             </p>
 
-            <button
-              className="ProductDetails__info-btn main-btn p-2 fs-3"
-              onClick={handleAddToCart}
-            >
-              Add To Cart <FontAwesomeIcon icon={faCartShopping} />
-            </button>
+            <div className="w-100 d-flex align-items-center gap-2">
+              <button
+                className="mainBtnLight py-2 px-4 fs-3"
+                onClick={() => handleAddToFavourite(productDetails)}
+              >
+                <IoMdHeart />
+              </button>
+
+              <button
+                className="mainBtn p-2 fs-3 w-100"
+                onClick={() => handleAddToCart(productDetails)}
+              >
+                Add To Cart <FaShoppingCart />
+              </button>
+            </div>
           </div>
-        </Container>
+        </div>
       </Loading>
     </section>
   );

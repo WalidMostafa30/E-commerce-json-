@@ -1,27 +1,27 @@
-/* eslint-disable react/prop-types */
 import "./NavBar.css";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretDown,
-  faCartShopping,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { actGetFavourites } from "../../store/favouriteSlice.js";
 import { authLogout } from "../../store/authSlice.js";
+import { FaUserCircle } from "react-icons/fa";
+import { IoCart, IoClose, IoMenu } from "react-icons/io5";
+import { IoMdHeart } from "react-icons/io";
 
-export default function NavBar({ openNav }) {
+export default function NavBar() {
+  const [nav, setNav] = useState(false);
+  const openNav = () => setNav(true);
+  const closeNav = () => setNav(false);
+
   const { items } = useSelector((state) => state.cart);
 
   const { itemsId } = useSelector((state) => state.favourite);
 
   const { user, accessToken } = useSelector((state) => state.auth);
 
-  const itemsLength = Object.keys(items).length;
+  const cartLength = Object.keys(items).length;
 
-  const favLength = Object.keys(itemsId).length;
+  const favLength = itemsId.length;
 
   const dispatch = useDispatch();
   const [userMenu, setUserMenu] = useState(false);
@@ -34,65 +34,83 @@ export default function NavBar({ openNav }) {
     }
   }, [dispatch, accessToken]);
   return (
-    <nav className="NavBar">
-      <div>
+    <>
+      <nav
+        className={`${
+          nav ? "open" : ""
+        } NavBar d-flex align-items-center justify-content-between gap-3`}
+      >
+        <NavLink onClick={closeNav} to={"/"} className="NavBar__link fs-5 py-2">
+          Home
+        </NavLink>
+
+        <NavLink
+          onClick={closeNav}
+          to={"categories"}
+          className="NavBar__link fs-5 py-2"
+        >
+          Categories
+        </NavLink>
+      </nav>
+
+      {/* =========================================================================== */}
+
+      <div className="d-flex align-items-center gap-3">
         {accessToken ? (
-          <div
-            className="main-btn main-btn--light d-flex align-items-center gap-2 py-1 px-2 position-relative"
-            onClick={toggleUserMenu}
-          >
-            <h4>{user.name}</h4>
-            <FontAwesomeIcon icon={faCaretDown} />
-            {userMenu && (
-              <div className="user-menu">
-                <h4>Profile</h4>
-                <h4 onClick={() => dispatch(authLogout())}>Log Out</h4>
-              </div>
-            )}
+          <div className="d-flex align-items-center gap-3">
+            <Link to={"/favourite"} className="fs-3 position-relative">
+              <IoMdHeart />
+              {favLength > 0 && (
+                <span className="iconNum">
+                  {favLength > 9 ? "+9" : favLength}
+                </span>
+              )}
+            </Link>
+
+            <Link to={"cart"} className="fs-3 position-relative">
+              <IoCart />
+              {cartLength > 0 && (
+                <span className="iconNum">
+                  {cartLength > 9 ? "+9" : cartLength}
+                </span>
+              )}
+            </Link>
+
+            <div
+              className="position-relative"
+              onClick={toggleUserMenu}
+              style={{ cursor: "pointer" }}
+            >
+              <FaUserCircle className="fs-3" />
+              {userMenu && (
+                <div className="user__menu">
+                  <span className="fs-5">Hi</span>
+                  <h4>{user.name}</h4>
+
+                  <div>
+                    <button
+                      className="fs-4 w-100 btn btn-danger mt-2"
+                      onClick={() => dispatch(authLogout())}
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div>
-            <Link
-              className="main-btn px-2 py-1 me-2 main-btn--light"
-              to="/login"
-            >
+            <Link className="mainBtn px-3 py-2" to="/login">
               Log In
-            </Link>
-            <Link className="main-btn px-2 py-1" to="/signup">
-              Sign Up
             </Link>
           </div>
         )}
-      </div>
 
-      <div className={openNav ? "NavBar__links open" : "NavBar__links"}>
-        <NavLink to={"/"} className="NavBar__link">
-          Home
-        </NavLink>
-        <NavLink to={"categories"} className="NavBar__link">
-          Category
-        </NavLink>
+        <div className="BarsMenu fs-2" style={{ cursor: "pointer" }}>
+          {nav ? <IoClose onClick={closeNav} /> : <IoMenu onClick={openNav} />}
+        </div>
       </div>
-
-      <div className="NavBar__icons">
-        <Link to={"/favourite"} className="NavBar__icon">
-          <FontAwesomeIcon icon={faHeart} />
-          {favLength > 0 && (
-            <span className="NavBar__icon-quantity">
-              {favLength > 9 ? "+9" : favLength}
-            </span>
-          )}
-        </Link>
-
-        <Link to={"cart"} className="NavBar__icon">
-          <FontAwesomeIcon icon={faCartShopping} />
-          {itemsLength > 0 && (
-            <span className="NavBar__icon-quantity">
-              {itemsLength > 9 ? "+9" : itemsLength}
-            </span>
-          )}
-        </Link>
-      </div>
-    </nav>
+    </>
   );
 }

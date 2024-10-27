@@ -1,18 +1,5 @@
 {
-  "users": [
-    {
-      "email": "w@g.c",
-      "password": "$2a$10$vnCjwRsZD7mtgSlsUeUsXeHZ/1usRqVycps68HCqZvfn4q31IqT9i",
-      "name": "walid",
-      "id": 1
-    },
-    {
-      "email": "ww@g.c",
-      "password": "$2a$10$68lAGWe9d/nl4mKsyZxobumHa83Z66OO92EtFyU8vvjA6rI1wPX9a",
-      "name": "walid",
-      "id": 2
-    }
-  ],
+  "users": [],
   "categories": [
     {
       "id": 1,
@@ -663,16 +650,5 @@
       "new": false
     }
   ],
-  "favourites": [
-    {
-      "userId": 2,
-      "productId": 1,
-      "id": 2
-    },
-    {
-      "userId": 2,
-      "productId": 43,
-      "id": 3
-    }
-  ]
+  "favourites": []
 }

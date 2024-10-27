@@ -1,7 +1,6 @@
 .Services {
-  .Services__Service {
+  .Services__card {
     border: 2px solid var(--main-color);
-    transition: 0.3s;
 
     &:hover {
       background-color: var(--main-color);
@@ -12,16 +11,9 @@
         color: white;
       }
     }
-
-    h1 {
-      color: var(--main-color);
-    }
   }
 
-  .Services__Service-icon {
+  .Services__card-icon {
     font-size: 100px;
-    path {
-      color: var(--main-text-color);
-    }
   }
 }

@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useDispatch, useSelector } from "react-redux";
-import "./CartDetails.css";
+import { useDispatch } from "react-redux";
 import { clearCart } from "../../store/cartSlice";
-import { Table } from "react-bootstrap";
 
 const CartDetails = ({ products }) => {
   const dispatch = useDispatch();
-  const darkMode = useSelector((state) => state.dark);
 
   const totalPrice = products.reduce((acc, product) => {
     acc += product.price * product.quantity;
@@ -19,8 +16,11 @@ const CartDetails = ({ products }) => {
   }, 0);
 
   return (
-    <div className="CartDetails">
-      <Table striped bordered hover variant={darkMode ? "dark" : ""}>
+    <div
+      className="p-3 rounded-3 d-flex flex-column align-items-center"
+      style={{ border: "3px solid var(--main-color)" }}
+    >
+      <table className="table table-striped table-hover table-bordered fs-4">
         <tbody>
           <tr>
             <td>Total Product</td>
@@ -35,10 +35,10 @@ const CartDetails = ({ products }) => {
             <td>{totalPrice} $</td>
           </tr>
         </tbody>
-      </Table>
+      </table>
 
       <button
-        className="main-btn main-btn--danger py-1 px-3 fs-3"
+        className="btn btn-danger py-1 px-3 fs-3"
         onClick={() => dispatch(clearCart())}
       >
         Clear Cart

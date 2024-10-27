@@ -1,30 +1,28 @@
-import "./Banner.css";
 import bannerImg from "../../assets/images/banner.webp";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <article className="Banner">
+    <article
+      className="position-relative d-flex flex-column align-items-center justify-content-center gap-3"
+      style={{ height: "300px" }}
+    >
       <img
         src={bannerImg}
         alt="Banner"
-        className="w-100 h-100 object-fit-cover"
+        className="w-100 h-100 object-fit-cover position-absolute z-n1"
+        loading="lazy"
       />
 
-      <div className="Banner__content">
-        <p className="text-light">repair Services</p>
+      <p className="text-light fs-5">repair Services</p>
 
-        <h1>
-          Up to <span>70% off</span> _ All t-shirts
-        </h1>
+      <h1 className="text-light">
+        Up to <span className="textMC">70% off</span> _ All t-shirts
+      </h1>
 
-        <Link
-          className="main-btn main-btn--light py-3 px-4 fs-3"
-          to={"categories"}
-        >
-          Explore more
-        </Link>
-      </div>
+      <Link className="mainBtnLight py-2 px-3 fs-3" to={"categories"}>
+        Explore more
+      </Link>
     </article>
   );
 };

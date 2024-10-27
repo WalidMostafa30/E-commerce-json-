@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import Product from "../product/Product";
-import "./ProductsItms.css";
 
-const ProductsItms = ({products}) => {
+const ProductsItems = ({ products }) => {
   return (
-    <div className="ProductsItms row justify-content-start row-cols-lg-3 row-cols-xl-4 row-cols-sm-2 g-4">
+    <div className="ProductsItems row justify-content-start row-cols-lg-3 row-cols-xl-4 row-cols-md-2 g-4">
       {products.map((pro) => {
         return (
           <div key={pro.id}>
@@ -16,4 +15,4 @@ const ProductsItms = ({products}) => {
   );
 };
 
-export default ProductsItms;
+export default ProductsItems;

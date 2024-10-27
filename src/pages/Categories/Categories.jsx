@@ -1,10 +1,8 @@
-import { Container } from "react-bootstrap";
-import "./Categories.css";
 import GlobalTitle from "../../components/GlobalTitle/GlobalTitle";
 import Category from "../../components/Category/Category";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCategories } from "../../store/categoriesSlice";
+import { cleanCategories, getCategories } from "../../store/categoriesSlice";
 import Loading from "../../components/Loading/Loading";
 
 const Categories = () => {
@@ -16,6 +14,8 @@ const Categories = () => {
 
   useEffect(() => {
     dispatch(getCategories());
+
+    return () => dispatch(cleanCategories());
   }, [dispatch]);
 
   return (
@@ -23,11 +23,11 @@ const Categories = () => {
       <GlobalTitle title={"Categories"} />
 
       <Loading isLoading={isLoading} error={error}>
-        <Container className="Categories__container row m-auto w-100 align-items-center justify-content-center gap-5">
+        <div className="container row m-auto align-items-center justify-content-center gap-3 gap-md-5">
           {categories.map((cat) => {
             return <Category key={cat.id} cat={cat} />;
           })}
-        </Container>
+        </div>
       </Loading>
     </section>
   );

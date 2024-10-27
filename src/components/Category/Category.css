@@ -1,9 +1,10 @@
 .Category {
   text-align: center;
   width: 250px;
+  padding: 0;
 
   .Category__img {
-    width: 250px;
+    width: 100%;
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
@@ -20,18 +21,13 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 0%;
-      height: 0%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 100%;
+      height: 100%;
       background-color: white;
-      opacity: 0;
+      opacity: 1;
       border-radius: 50%;
     }
-  }
-
-  .Category__title {
-    margin-top: 20px;
-    color: var(--main-text-color);
   }
 
   &:hover {
@@ -43,13 +39,11 @@
 
 @keyframes flash {
   0% {
-    width: 0%;
-    height: 0%;
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0.4;
   }
   100% {
-    height: 200%;
-    width: 200%;
+    transform: translate(-50%, -50%) scale(2);
     opacity: 0;
   }
 }

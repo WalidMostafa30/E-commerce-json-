@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Container } from "react-bootstrap";
+
 import "./Search.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -51,7 +51,7 @@ const Search = ({ handleSearch, showSearch }) => {
         <h5>Choose what you want to search for?</h5>
         <label
           className={
-            selectedOption === "category" ? "main-btn checked" : "main-btn"
+            selectedOption === "category" ? "mainBtn checked" : "mainBtn"
           }
         >
           <input
@@ -64,7 +64,7 @@ const Search = ({ handleSearch, showSearch }) => {
         <b>OR</b>{" "}
         <label
           className={
-            selectedOption === "main-btn products" ? "checked" : "main-btn"
+            selectedOption === "mainBtn products" ? "checked" : "mainBtn"
           }
         >
           <input

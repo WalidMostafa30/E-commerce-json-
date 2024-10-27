@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
-import "./Products.css";
-import { Container } from "react-bootstrap";
 import GlobalTitle from "../../components/GlobalTitle/GlobalTitle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanProducts, getProducts } from "../../store/productsSlice";
 import Loading from "../../components/Loading/Loading";
-import ProductsItms from "../../components/ProductsItms/ProductsItms";
+import ProductsItems from "../../components/ProductsItems/ProductsItems";
 
 const Products = () => {
   const { prefix } = useParams();
@@ -24,9 +22,9 @@ const Products = () => {
       <GlobalTitle title={"Products"} />
 
       <Loading isLoading={isLoading} error={error}>
-        <Container className="Products__container">
-          <ProductsItms products={products} />
-        </Container>
+        <div className="container">
+          <ProductsItems products={products} />
+        </div>
       </Loading>
     </section>
   );

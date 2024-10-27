@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { authLogout } from "./authSlice";
 
 const EcomCart = localStorage.getItem("EcomCart")
   ? JSON.parse(localStorage.getItem("EcomCart"))
@@ -103,6 +104,11 @@ export const cartSlice = createSlice({
     builder.addCase(getFullProducts.rejected, (state, action) => {
       state.isLoading = true;
       state.error = action.payload;
+    });
+
+    builder.addCase(authLogout, (state) => {
+      state.items = {};
+      state.fullProducts = [];
     });
   },
 });

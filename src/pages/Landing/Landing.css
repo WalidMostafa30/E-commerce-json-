@@ -1,27 +1,10 @@
 .Landing {
-  background-color: var(--main-color2);
-
-  .Landing__container {
-    height: calc(100dvh - (var(--nav-height) * 2));
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: 991px) {
-      flex-direction: column-reverse;
-      justify-content: center;
-      gap: 40px;
-    }
-  }
+  background-color: var(--main-bg-color);
+  height: calc(100dvh - var(--nav-height));
 
   .Landing__title {
     font-size: 100px;
     font-weight: bold;
-    margin-bottom: 30px;
-
-    span {
-      color: var(--main-color);
-    }
 
     @media (max-width: 991px) {
       font-size: 70px;
@@ -29,14 +12,14 @@
   }
 
   .Landing__img {
-    width: 500px;
+    width: 400px;
 
     @media (max-width: 1200px) {
-      width: 400px;
+      width: 250px;
     }
 
-    @media (max-width: 991px) {
-      width: 60%;
+    img {
+      width: 100%;
     }
   }
 }

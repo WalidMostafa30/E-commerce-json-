@@ -1,6 +1,4 @@
-import { Container } from "react-bootstrap";
 import GlobalTitle from "../../components/GlobalTitle/GlobalTitle";
-import "./SignUp.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -73,35 +71,50 @@ const SignUp = () => {
   }
 
   return (
-    <section className="SignUp">
+    <section>
       <GlobalTitle title={"Sign Up"} />
 
-      <Container className="SignUp__container">
-        <form className="col-11 col-md-6" onSubmit={onSupmitHandler}>
-          <div className="SignUp__input">
-            <label className="fs-5">Name</label>
+      <div className="container d-flex align-items-center justify-content-center">
+        <form
+          className="col-12 col-md-6 d-flex flex-column g-2"
+          onSubmit={onSupmitHandler}
+        >
+          <div className="mb-2">
+            <label className="fs-5" htmlFor="name">
+              Name
+            </label>
             <input
               type="text"
               placeholder="Name.."
+              id="name"
               name="name"
               value={form.name}
               onChange={onChangeHandler}
-              className={errMsg.name && "border-danger"}
+              className={`${
+                errMsg.name ? "border-danger" : ""
+              } w-100 fs-5 p-2 rounded-2`}
+              style={{ outline: "none", border: "2px solid var(--main-color)" }}
             />
             {errMsg.name && (
               <span className="text-danger fw-medium">{errMsg.name}</span>
             )}
           </div>
 
-          <div className="SignUp__input">
-            <label className="fs-5">E-mail</label>
+          <div className="mb-2">
+            <label className="fs-5" htmlFor="email">
+              E-mail
+            </label>
             <input
               type="email"
+              id="email"
               placeholder="E-mail.."
               name="email"
               value={form.email}
               onChange={onChangeHandler}
-              className={(errMsg.email || error) && "border-danger"}
+              className={`${
+                errMsg.email ? "border-danger" : ""
+              } w-100 fs-5 p-2 rounded-2`}
+              style={{ outline: "none", border: "2px solid var(--main-color)" }}
             />
             {errMsg.email && (
               <span className="text-danger fw-medium">{errMsg.email}</span>
@@ -109,30 +122,42 @@ const SignUp = () => {
             {error && <span className="text-danger fw-medium">{error}</span>}
           </div>
 
-          <div className="SignUp__input">
-            <label className="fs-5">Password</label>
+          <div className="mb-2">
+            <label className="fs-5" htmlFor="password">
+              Password
+            </label>
             <input
               type="password"
+              id="password"
               placeholder="Password.."
               name="password"
               value={form.password}
               onChange={onChangeHandler}
-              className={errMsg.password && "border-danger"}
+              className={`${
+                errMsg.password ? "border-danger" : ""
+              } w-100 fs-5 p-2 rounded-2`}
+              style={{ outline: "none", border: "2px solid var(--main-color)" }}
             />
             {errMsg.password && (
               <span className="text-danger fw-medium">{errMsg.password}</span>
             )}
           </div>
 
-          <div className="SignUp__input">
-            <label className="fs-5">Confirm Password</label>
+          <div className="mb-2">
+            <label className="fs-5" htmlFor="confirmPassword">
+              Confirm Password
+            </label>
             <input
               type="password"
+              id="confirmPassword"
               placeholder="confirmPassword.."
               name="confirmPassword"
               value={form.confirmPassword}
               onChange={onChangeHandler}
-              className={errMsg.confirmPassword && "border-danger"}
+              className={`${
+                errMsg.confirmPassword ? "border-danger" : ""
+              } w-100 fs-5 p-2 rounded-2`}
+              style={{ outline: "none", border: "2px solid var(--main-color)" }}
             />
             {errMsg.confirmPassword && (
               <span className="text-danger fw-medium">
@@ -141,15 +166,15 @@ const SignUp = () => {
             )}
           </div>
 
-          <button className="main-btn m-auto">
+          <button className="mainBtn mx-auto my-2 py-1 px-5 fs-2">
             {loading ? "loading..." : "Submit"}
           </button>
 
-          <Link className="m-auto fs-5" to={"/login"}>
+          <Link className="m-auto fs-5 text-primary" to={"/login"}>
             already have an acount?
           </Link>
         </form>
-      </Container>
+      </div>
     </section>
   );
 };

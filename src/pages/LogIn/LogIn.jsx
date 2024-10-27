@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import GlobalTitle from "../../components/GlobalTitle/GlobalTitle";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -54,52 +53,67 @@ const LogIn = () => {
   }
 
   return (
-    <section className="SignUp">
+    <section>
       <GlobalTitle title={"Log In"} />
-      <Container className="SignUp__container">
-        <form className="col-11 col-md-6" onSubmit={onSupmitHandler}>
-          <div className="SignUp__input">
-            <label className="fs-5">E-mail</label>
+      <div className="container d-flex align-items-center justify-content-center">
+        <form
+          className="col-12 col-md-6 d-flex flex-column g-2"
+          onSubmit={onSupmitHandler}
+        >
+          <div className="mb-2">
+            <label className="fs-5" htmlFor="email">
+              E-mail
+            </label>
             <input
               name="email"
-              type="email"
+              id="email"
+              type="text"
               placeholder="E-mail.."
               value={form.email}
               onChange={onChangeHandler}
-              className={errMsg.email && "border-danger"}
+              className={`${
+                errMsg.email ? "border-danger" : ""
+              } w-100 fs-5 p-2 rounded-2`}
+              style={{ outline: "none", border: "2px solid var(--main-color)" }}
             />
             {errMsg.email && (
               <span className="text-danger fw-medium">{errMsg.email}</span>
             )}
           </div>
 
-          <div className="SignUp__input">
-            <label className="fs-5">Password</label>
+          <div className="mb-2">
+            <label className="fs-5" htmlFor="password">
+              Password
+            </label>
             <input
               name="password"
+              id="password"
               type="password"
               placeholder="Password.."
               value={form.password}
               onChange={onChangeHandler}
-              className={errMsg.password && "border-danger"}
+              className={`${
+                errMsg.password ? "border-danger" : ""
+              } w-100 fs-5 p-2 rounded-2`}
+              style={{ outline: "none", border: "2px solid var(--main-color)" }}
             />
             {errMsg.password && (
               <span className="text-danger fw-medium">{errMsg.password}</span>
             )}
           </div>
 
-          <button className="main-btn m-auto">
-            {loading ? "loading..." : "Lon in"}
+          <button className="mainBtn mx-auto my-2 py-1 px-5 fs-2">
+            {loading ? "loading..." : "Log in"}
           </button>
 
-          <Link className="m-auto fs-5" to={"/signup"}>
-            create acount
+          <Link className="m-auto fs-5 text-primary" to={"/signup"}>
+            create acount?
           </Link>
           {error && (
             <p className="alert alert-danger fw-medium text-center">{error}</p>
           )}
         </form>
-      </Container>
+      </div>
     </section>
   );
 };

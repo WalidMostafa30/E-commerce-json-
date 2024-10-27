@@ -14,6 +14,7 @@ export const actLikeToggle = createAsyncThunk(
   async (id, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     const { auth } = getState();
+
     try {
       const isRecordExist = await axios.get(
         `/favourites?userId=${auth.user.id}&productId=${id}`
@@ -81,10 +82,12 @@ export const favouritesSlice = createSlice({
   name: "favouritesSlice",
   initialState,
   reducers: {
-    productsFullInfoCleanUp: (state) => {
+    favouritesCleanUp: (state) => {
       state.productsFullInfo = [];
-    }
+    },
   },
+
+  // add or remove from favourites
   extraReducers: (builder) => {
     builder.addCase(actLikeToggle.pending, (state) => {
       state.error = null;
@@ -102,6 +105,7 @@ export const favouritesSlice = createSlice({
     builder.addCase(actLikeToggle.rejected, (state, action) => {
       state.error = action.payload;
     });
+
     // get favourites items
     builder.addCase(actGetFavourites.pending, (state) => {
       state.loading = true;
@@ -109,7 +113,6 @@ export const favouritesSlice = createSlice({
     });
     builder.addCase(actGetFavourites.fulfilled, (state, action) => {
       state.loading = false;
-
       if (action.payload.dataType === "ProductsFullInfo") {
         state.productsFullInfo = action.payload.data;
       } else if (action.payload.dataType === "productsIds") {
@@ -128,5 +131,5 @@ export const favouritesSlice = createSlice({
   },
 });
 
-export const { productsFullInfoCleanUp } = favouritesSlice.actions;
+export const { favouritesCleanUp } = favouritesSlice.actions;
 export default favouritesSlice.reducer;

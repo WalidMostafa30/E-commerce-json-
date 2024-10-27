@@ -1,10 +1,9 @@
 .Footer {
-  background-color: var(--main-bg-color);
-  border-top: 1px solid var(--main-color);
+  background-color: var(--main-bg-color2);
+  box-shadow: 0px -2px 6px 0px #0000002e;
 
   .Footer__Title {
     text-align: center;
-    color: var(--main-text-color);
     font-size: 60px;
     font-weight: bold;
 
@@ -17,14 +16,9 @@
     }
   }
 
-  .Footer__follow {
+  .Footer__links {
     a {
       font-size: 40px;
-
-      path {
-        color: var(--main-p-color);
-        transition: 0.3s;
-      }
 
       &:hover {
         path {
@@ -34,14 +28,14 @@
     }
   }
 
-  .Footer__links-link {
-    color: var(--main-text-color);
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 22px;
+  .Footer__pages {
+    a {
+      cursor: pointer;
+      font-size: 22px;
 
-    &:hover {
-      color: var(--main-color);
+      &:hover {
+        color: var(--main-color);
+      }
     }
   }
 }

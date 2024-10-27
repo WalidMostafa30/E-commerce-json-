@@ -21,7 +21,7 @@ const productDetailsSlice = createSlice({
   name: "productDetails",
   initialState,
   reducers: {
-    cleanproductDetails: (state) => {
+    cleanProductDetails: (state) => {
       state.productDetails = {};
     },
   },
@@ -34,7 +34,6 @@ const productDetailsSlice = createSlice({
       .addCase(getProductDetails.fulfilled, (state, action) => {
         state.isLoading = false;
         state.productDetails = action.payload[0];
-        // state.productDetails.push(action.payload);
       })
       .addCase(getProductDetails.rejected, (state, action) => {
         state.isLoading = false;
@@ -43,5 +42,5 @@ const productDetailsSlice = createSlice({
   },
 });
 
-export const { cleanproductDetails } = productDetailsSlice.actions;
+export const { cleanProductDetails } = productDetailsSlice.actions;
 export default productDetailsSlice.reducer;
