@@ -12,7 +12,7 @@ import ProductsItems from "../../components/ProductsItems/ProductsItems";
 import Loading from "../../components/Loading/Loading";
 
 const Favourite = () => {
-  const { productsFullInfo, loading, error } = useSelector(
+  const { favouriteProducts, loading, error } = useSelector(
     (state) => state.favourite
   );
   const dispatch = useDispatch();
@@ -34,13 +34,13 @@ const Favourite = () => {
       <GlobalTitle title={"Favourite"} />
 
       <Loading isLoading={loading} error={error}>
-        {productsFullInfo.length !== 0 ? (
+        {favouriteProducts.length !== 0 ? (
           <div className="container">
-            <ProductsItems products={productsFullInfo} />
+            <ProductsItems products={favouriteProducts} />
           </div>
         ) : (
           <Message
-            msg={"Favourites Is Empty... Add Some Products"}
+            msg={"Favourites Is Empty"}
             msgImg={imgFav}
           />
         )}

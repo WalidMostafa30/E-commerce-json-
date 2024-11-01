@@ -8,17 +8,27 @@ import Favourite from "../pages/Favourite/Favourite";
 import Categories from "../pages/Categories/Categories";
 import LogIn from "../pages/LogIn/LogIn";
 import SignUp from "../pages/SignUp/SignUp";
-// import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import About from "../pages/About/About";
+import Search from "../pages/Search/Search";
+import Profile from "../pages/Profile/Profile";
+import Order from "../pages/Order/Order";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "search",
+        element: <Search />,
       },
       {
         path: "categories",
@@ -47,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "order",
+        element: <Order />,
       },
     ],
   },

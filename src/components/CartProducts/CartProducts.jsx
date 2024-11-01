@@ -1,10 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
-import {
-  addToCart,
-  decressquantity,
-  removeFromCart,
-} from "../../store/cartSlice";
+import { CartAction } from "../../store/cartSlice";
 import "./CartProducts.css";
 
 const CartProducts = ({ products }) => {
@@ -49,7 +45,9 @@ const CartProducts = ({ products }) => {
                 <div className="CartProduct__quantity d-flex align-items-center justify-content-center w-auto rounded-2">
                   <button
                     className="fs-4 px-3 fw-semibold border-0 text-white bgMC"
-                    onClick={() => dispatch(decressquantity(pro.id))}
+                    onClick={() =>
+                      dispatch(CartAction({ id: pro.id, act: "decrease" }))
+                    }
                   >
                     -
                   </button>
@@ -58,14 +56,18 @@ const CartProducts = ({ products }) => {
 
                   <button
                     className="fs-4 px-3 fw-semibold border-0 text-white bgMC"
-                    onClick={() => dispatch(addToCart(pro.id))}
+                    onClick={() =>
+                      dispatch(CartAction({ id: pro.id, act: "add" }))
+                    }
                   >
                     +
                   </button>
                 </div>
 
                 <button
-                  onClick={() => dispatch(removeFromCart(pro.id))}
+                  onClick={() =>
+                    dispatch(CartAction({ id: pro.id, act: "remove" }))
+                  }
                   className="btn btn-danger py-1 px-2"
                 >
                   Remove

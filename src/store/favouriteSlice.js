@@ -3,8 +3,8 @@ import axios from "axios";
 import { authLogout } from "./authSlice";
 
 const initialState = {
-  itemsId: [],
-  productsFullInfo: [],
+  favouriteIds: [],
+  favouriteProducts: [],
   error: null,
   loading: false,
 };
@@ -83,7 +83,7 @@ export const favouritesSlice = createSlice({
   initialState,
   reducers: {
     favouritesCleanUp: (state) => {
-      state.productsFullInfo = [];
+      state.favouriteProducts = [];
     },
   },
 
@@ -94,10 +94,10 @@ export const favouritesSlice = createSlice({
     });
     builder.addCase(actLikeToggle.fulfilled, (state, action) => {
       if (action.payload.type === "add") {
-        state.itemsId.push(action.payload.id);
+        state.favouriteIds.push(action.payload.id);
       } else {
-        state.itemsId = state.itemsId.filter((el) => el !== action.payload.id);
-        state.productsFullInfo = state.productsFullInfo.filter(
+        state.favouriteIds = state.favouriteIds.filter((el) => el !== action.payload.id);
+        state.favouriteProducts = state.favouriteProducts.filter(
           (el) => el.id !== action.payload.id
         );
       }
@@ -114,9 +114,9 @@ export const favouritesSlice = createSlice({
     builder.addCase(actGetFavourites.fulfilled, (state, action) => {
       state.loading = false;
       if (action.payload.dataType === "ProductsFullInfo") {
-        state.productsFullInfo = action.payload.data;
+        state.favouriteProducts = action.payload.data;
       } else if (action.payload.dataType === "productsIds") {
-        state.itemsId = action.payload.data;
+        state.favouriteIds = action.payload.data;
       }
     });
     builder.addCase(actGetFavourites.rejected, (state, action) => {
@@ -125,8 +125,8 @@ export const favouritesSlice = createSlice({
     });
 
     builder.addCase(authLogout, (state) => {
-      state.itemsId = [];
-      state.productsFullInfo = [];
+      state.favouriteIds = [];
+      state.favouriteProducts = [];
     });
   },
 });

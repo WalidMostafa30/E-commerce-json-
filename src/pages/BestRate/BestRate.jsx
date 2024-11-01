@@ -26,10 +26,13 @@ const BestRate = () => {
       <GlobalTitle title={"Best Rate"} />
 
       <Loading isLoading={isLoading} error={error}>
-        <ProductsItems products={products.slice(0,4)} />
+        <ProductsItems products={products.slice(0, 4)} />
 
         <div className="w-100 d-flex">
-          <Link to={"/categories"} className="mainBtn mx-auto mt-4 py-2 px-3 fs-3">
+          <Link
+            to={"/categories"}
+            className="mainBtn mx-auto mt-4 py-2 px-3 fs-3"
+          >
             Show More
           </Link>
         </div>

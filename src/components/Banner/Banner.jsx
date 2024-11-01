@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <article
-      className="position-relative d-flex flex-column align-items-center justify-content-center gap-3"
+      className="position-relative d-flex flex-column align-items-center justify-content-center gap-3 my-5"
       style={{ height: "300px" }}
     >
       <img

@@ -650,5 +650,7 @@
       "new": false
     }
   ],
-  "favourites": []
+  "favourites": [],
+  "cart": [],
+  "order": []
 }

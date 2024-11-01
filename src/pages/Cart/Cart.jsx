@@ -5,23 +5,19 @@ import CartDetails from "../../components/CartDetails/CartDetails";
 import Message from "../../components/Message/Message";
 import imgCart from "../../assets/images/Cart.webp";
 import { useEffect } from "react";
-import { cleanCartUseEffect, getFullProducts } from "../../store/cartSlice";
+import { actGetCart, cleanCart } from "../../store/cartSlice";
 import { Navigate } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 export default function Cart() {
-  const { items, fullProducts } = useSelector((state) => state.cart);
-
-  const products = fullProducts.map((pro) => ({
-    ...pro,
-    quantity: items[pro.id],
-  }));
+  const { cartProducts, isLoading, error } = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFullProducts());
+    dispatch(actGetCart());
 
-    return () => dispatch(cleanCartUseEffect());
+    return () => dispatch(cleanCart());
   }, [dispatch]);
 
   const { accessToken } = useSelector((state) => state.auth);
@@ -34,19 +30,21 @@ export default function Cart() {
     <section className="Cart">
       <GlobalTitle title={"Cart"} />
 
-      {fullProducts.length > 0 ? (
-        <div className="Cart__container container row m-auto g-3">
-          <div className="Cart__details col-12 col-xl-5">
-            <CartDetails products={products} />
-          </div>
+      <Loading isLoading={isLoading} error={error}>
+        {cartProducts.length > 0 ? (
+          <div className="Cart__container container row m-auto g-3">
+            <div className="Cart__details col-12 col-xl-5">
+              <CartDetails products={cartProducts} />
+            </div>
 
-          <div className="Cart__products col-12 col-xl-7">
-            <CartProducts products={products} />
+            <div className="Cart__products col-12 col-xl-7">
+              <CartProducts products={cartProducts} />
+            </div>
           </div>
-        </div>
-      ) : (
-        <Message msg={"Cart Is Empty... Add Some Products"} msgImg={imgCart} />
-      )}
+        ) : (
+          <Message msg={"Cart Is Empty"} msgImg={imgCart} />
+        )}
+      </Loading>
     </section>
   );
 }

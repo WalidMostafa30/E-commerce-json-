@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./Product.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../store/cartSlice.js";
+import { CartAction } from "../../store/cartSlice.js";
 import { actLikeToggle } from "../../store/favouriteSlice.js";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaShoppingCart } from "react-icons/fa";
@@ -9,15 +9,15 @@ import { IoMdHeart } from "react-icons/io";
 
 export default function Product({ pro }) {
   const dispatch = useDispatch();
-  const { itemsId } = useSelector((state) => state.favourite);
+  const { favouriteIds } = useSelector((state) => state.favourite);
   const { accessToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  const isFavourite = itemsId.includes(pro.id);
+  const isFavourite = favouriteIds.includes(pro.id);
 
   const handleAddToCart = (pro) => {
     if (accessToken) {
-      dispatch(addToCart(pro.id));
+      dispatch(CartAction({ id: pro.id, act: "add" }));
     } else {
       navigate("/login");
     }
@@ -34,7 +34,12 @@ export default function Product({ pro }) {
   return (
     <div className="Product">
       <div className="Product__img">
-        <img className="w-100 h-100 object-fit-cover" src={pro.images?.[0]} alt={pro.title} loading="lazy" />
+        <img
+          className="w-100 h-100 object-fit-cover"
+          src={pro.images?.[0]}
+          alt={pro.title}
+          loading="lazy"
+        />
         <div className="Product__actions">
           <Link
             className="Product__icon"

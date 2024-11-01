@@ -2,9 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProductDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { addToCart } from "../../store/cartSlice";
+import { CartAction } from "../../store/cartSlice";
 import { actLikeToggle } from "../../store/favouriteSlice.js";
-import { cleanProductDetails, getProductDetails } from "../../store/productDetailsSlice";
+import {
+  cleanProductDetails,
+  getProductDetails,
+} from "../../store/productDetailsSlice";
 import Loading from "../../components/Loading/Loading";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
@@ -17,7 +20,7 @@ const ProductDetails = () => {
   );
 
   const [activeImg, setActiveImg] = useState(0);
-  
+
   const imgNum = (index) => setActiveImg(index);
 
   const { accessToken } = useSelector((state) => state.auth);
@@ -26,7 +29,7 @@ const ProductDetails = () => {
 
   const handleAddToCart = (pro) => {
     if (accessToken) {
-      dispatch(addToCart(pro.id));
+      dispatch(CartAction({ id: pro.id, act: "add" }));
     } else {
       navigate("/login");
     }

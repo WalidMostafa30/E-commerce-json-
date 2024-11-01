@@ -166,7 +166,10 @@ const SignUp = () => {
             )}
           </div>
 
-          <button className="mainBtn mx-auto my-2 py-1 px-5 fs-2">
+          <button
+            disabled={loading}
+            className="mainBtn mx-auto my-2 py-1 px-5 fs-2"
+          >
             {loading ? "loading..." : "Submit"}
           </button>
 
